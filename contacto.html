@@ -1,0 +1,591 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHOST - Contacto Directo</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-darker: #000000;
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #ffffff;
+            --success: #25D366;
+            --warning: #ffc107;
+            --card-bg: rgba(30, 30, 30, 0.8);
+        }
+
+        body {
+            background-color: var(--bg-darker);
+            color: var(--accent);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        /* Sección Hero */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #000 0%, #1a1a1a 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--success);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Sección de contacto */
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--bg-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--success), transparent);
+        }
+
+        .contact-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin: 0 auto;
+            max-width: 800px;
+            border: 1px solid var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--success);
+        }
+
+        .card-content {
+            padding: 40px;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--success);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .profile-role {
+            color: var(--success);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .values-title {
+            text-align: center;
+            margin: 30px 0 25px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .values-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .value-item {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+
+        .value-item:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+
+        .value-text {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .payment-title {
+            text-align: center;
+            margin: 30px 0 25px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .payment-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+
+        .payment-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .payment-text {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .contact-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
+            background: linear-gradient(135deg, #128C7E, #075E54);
+        }
+
+        .contact-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-darker);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--secondary);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Animaciones */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .card-content {
+                padding: 30px 20px;
+            }
+            .profile-name {
+                font-size: 2rem;
+            }
+            .values-container, .payment-methods {
+                gap: 15px;
+            }
+            .value-item, .payment-item {
+                min-width: 100px;
+                padding: 12px 18px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            .contact-btn {
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+        }
+
+
+
+
+        /* Barra lateral */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid var(--secondary);
+}
+
+.sidebar-menu {
+    padding: 15px 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+    font-size: 1.1rem;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--accent);
+    padding-left: 25px;
+}
+
+.sidebar-menu i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Botón hamburguesa */
+#sidebarCollapse {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--secondary);
+    color: var(--accent);
+    z-index: 900;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    z-index: 1100;
+}
+
+#sidebarCollapse:hover {
+    background-color: var(--secondary);
+}
+
+    </style>
+</head>
+<body>
+     <!-- Barra lateral -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3 class="text-center">GHOST MENU</h3>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="active"><i class="bi bi-house-door"></i> Inicio</a>
+            <!--    <a href="#"><i class="bi bi-camera-reels"></i> Streaming</a> -->
+            <a href="comunidad.html"><i class="bi bi-people"></i> Comunidad</a>
+            <a href="contacto.html"><i class="bi bi-chat-dots"></i> Contacto directo</a>
+        </div>
+    </nav>
+
+    <!-- Botón para abrir el menú -->
+    <button type="button" id="sidebarCollapse" class="btn">
+        <i class="bi bi-list"></i>
+    </button>
+
+
+
+
+
+    <!-- Contenido principal -->
+    <div id="content">
+        <!-- Sección Hero -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">GHOST</h1>
+                <p class="hero-subtitle">Contacto Directo</p>
+                <p>Atención personalizada y rápida para tus recargas y cuentas</p>
+            </div>
+        </section>
+
+        <!-- Sección de contacto -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contáctanos Directamente</h2>
+
+                <div class="contact-card">
+                    <div class="card-content">
+                        <div class="profile-container">
+                            <img src="perfil.jpg" alt="Perfil GHOST" class="profile-img">
+                            <h3 class="profile-name">GHOST</h3>
+                            <p class="profile-role">Servicio de Recargas y Cuentas</p>
+                        </div>
+
+                        <h3 class="values-title">
+                            <i class="bi bi-stars"></i> Nuestros Valores
+                        </h3>
+                        <div class="values-container">
+                            <div class="value-item">
+                                <div class="value-icon">
+                                    <i class="bi bi-lightning-charge"></i>
+                                </div>
+                                <div class="value-text">Rápido</div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <div class="value-text">Seguro</div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">
+                                    <i class="bi bi-emoji-smile"></i>
+                                </div>
+                                <div class="value-text">Amigable</div>
+                            </div>
+                        </div>
+
+                        <h3 class="payment-title">
+                            <i class="bi bi-wallet2"></i> Métodos de Pago
+                        </h3>
+                        <div class="payment-methods">
+                            <div class="payment-item">
+                                <div class="payment-icon">
+                                    <i class="bi bi-qr-code"></i>
+                                </div>
+                                <div class="payment-text">QR</div>
+                            </div>
+                            <div class="payment-item">
+                                <div class="payment-icon">
+                                    <i class="bi bi-cash"></i>
+                                </div>
+                                <div class="payment-text">Tigo Money</div>
+                            </div>
+                            <div class="payment-item">
+                                <div class="payment-icon">
+                                    <i class="bi bi-currency-bitcoin"></i>
+                                </div>
+                                <div class="payment-text">Binance</div>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/59161541084" class="contact-btn" target="_blank">
+                            <i class="bi bi-whatsapp"></i> Contacto Directo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pie de página -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2023 GHOST Servicios. Todos los derechos reservados.</p>
+                <p class="mb-0">Profesionalismo, seguridad y rapidez en cada transacción</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Inicializar
+document.addEventListener('DOMContentLoaded', function () {
+    // Toggle sidebar
+    document.getElementById('sidebarCollapse').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('active');
+    });
+
+    // Cerrar sidebar al hacer clic en un enlace
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+        link.addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('active');
+        });
+    });
+
+    // Renderizar juegos
+    renderGames();
+
+    // Configurar búsqueda
+    document.getElementById('gameSearch').addEventListener('input', filterGames);
+    document.querySelector('.search-container .btn').addEventListener('click', filterGames);
+
+    // Cerrar sidebar al hacer clic fuera
+    document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const button = document.getElementById('sidebarCollapse');
+
+        if (sidebar.classList.contains('active') &&
+            !sidebar.contains(event.target) &&
+            event.target !== button) {
+            sidebar.classList.remove('active');
+        }
+    });
+});
+
+// Evento para botones de compra
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest('.btn-buy')) {
+        const button = e.target.closest('.btn-buy');
+        const gameName = button.getAttribute('data-game');
+        const item = button.getAttribute('data-item');
+        const phone = '59161541084';
+        const message = encodeURIComponent(`Hola, estoy interesado en comprar: ${item} para ${gameName}. ¿Está disponible?`);
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+
+        // Animación de confirmación
+        button.classList.add('btn-confirm');
+        setTimeout(() => {
+            button.classList.remove('btn-confirm');
+        }, 500);
+    }
+});
+    </script>
+</body>
+</html>

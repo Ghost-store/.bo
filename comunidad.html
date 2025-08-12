@@ -1,0 +1,533 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHOST - Comunidades Oficiales</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-darker: #000000;
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #ffffff;
+            --success: #25D366;
+            --warning: #ffc107;
+        }
+
+        body {
+            background-color: var(--bg-darker);
+            color: var(--accent);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        /* Sección Hero */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #000 0%, #1a1a1a 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--success);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Sección de comunidades */
+        .communities-section {
+            padding: 80px 0;
+            background-color: var(--bg-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--success), transparent);
+        }
+
+        .community-card {
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-bottom: 40px;
+            height: 100%;
+            border: 1px solid var(--secondary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .community-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: var(--success);
+        }
+
+        .banner-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--success);
+        }
+
+        .card-description {
+            color: #ddd;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .rules-title {
+            font-weight: 600;
+            color: var(--success);
+            margin: 20px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rules-list {
+            padding-left: 20px;
+            margin-bottom: 25px;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .rules-list li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .rules-list li:before {
+            content: '🔹';
+            position: absolute;
+            left: -20px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+            background: linear-gradient(135deg, #128C7E, #075E54);
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.4rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-darker);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--secondary);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Animaciones */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .card-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .card-content {
+                padding: 20px;
+            }
+            .whatsapp-btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
+
+
+
+
+
+/* Barra lateral */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid var(--secondary);
+}
+
+.sidebar-menu {
+    padding: 15px 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+    font-size: 1.1rem;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--accent);
+    padding-left: 25px;
+}
+
+.sidebar-menu i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Botón hamburguesa */
+#sidebarCollapse {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--secondary);
+    color: var(--accent);
+    z-index: 900;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    z-index: 1100;
+}
+
+#sidebarCollapse:hover {
+    background-color: var(--secondary);
+}
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+ <!-- Barra lateral -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3 class="text-center">GHOST MENU</h3>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="active"><i class="bi bi-house-door"></i> Inicio</a>
+            <!--    <a href="#"><i class="bi bi-camera-reels"></i> Streaming</a> -->
+            <a href="comunidad.html"><i class="bi bi-people"></i> Comunidad</a>
+            <a href="contacto.html"><i class="bi bi-chat-dots"></i> Contacto directo</a>
+        </div>
+    </nav>
+
+    <!-- Botón para abrir el menú -->
+    <button type="button" id="sidebarCollapse" class="btn">
+        <i class="bi bi-list"></i>
+    </button>
+
+
+
+
+
+
+
+
+    <!-- Contenido principal -->
+    <div id="content">
+        <!-- Sección Hero -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">GHOST</h1>
+                <p class="hero-subtitle">Comunidades Oficiales de WhatsApp</p>
+                <p>Únete a nuestros grupos seguros para compra de recargas y cuentas de streaming</p>
+            </div>
+        </section>
+
+        <!-- Sección de comunidades -->
+        <section class="communities-section">
+            <div class="container">
+                <h2 class="section-title">Nuestras Comunidades</h2>
+
+                <div class="row">
+                    <!-- Comunidad de Juegos -->
+                    <div class="col-lg-6">
+                        <div class="community-card">
+                            <div class="banner-img" style="background-image: url('https://placehold.co/800x400/1a1a2e/25D366?text=RECARGAS+DE+JUEGOS');">
+                                <div class="banner-overlay"></div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">
+                                    <i class="bi bi-joystick"></i> Compra y Recarga en Tus Juegos
+                                </h3>
+                                <p class="card-description">
+                                    Grupo exclusivo para compras seguras de recargas de juegos como Fortnite, Roblox, PUBG, Free Fire, Mobile Legends y más. Ofertas diarias y atención rápida.
+                                </p>
+                                
+                                <h4 class="rules-title">
+                                    <i class="bi bi-shield-check"></i> Reglas del Grupo
+                                </h4>
+                                <ul class="rules-list">
+                                    <li>Temas permitidos: Juegos, ofertas y dudas sobre recargas</li>
+                                    <li>Métodos de pago: QR, Tigo Money</li>
+                                    <li>Prohibido contenido para adultos</li>
+                                    <li>No se permiten links extraños ni spam</li>
+                                    <li>Se prohíbe la acción de revendedores</li>
+                                    <li>Mantén el respeto con otros miembros</li>
+                                </ul>
+
+                                <a href="https://chat.whatsapp.com/LWpWOdWD1uL4XUpdrfiYII" class="whatsapp-btn" target="_blank">
+                                    <i class="bi bi-whatsapp"></i> Unirse al Grupo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comunidad de Streaming -->
+                    <div class="col-lg-6">
+                        <div class="community-card">
+                            <div class="banner-img" style="background-image: url('https://placehold.co/800x400/1a1a2e/25D366?text=CUENTAS+DE+STREAMING');">
+                                <div class="banner-overlay"></div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">
+                                    <i class="bi bi-cast"></i> Venta de Cuentas de Streaming
+                                </h3>
+                                <p class="card-description">
+                                    Grupo oficial para la compra de cuentas premium de Netflix, Disney+, Prime Video, Spotify y otras plataformas. Garantía de seguridad y cuentas verificadas.
+                                </p>
+                                
+                                <h4 class="rules-title">
+                                    <i class="bi bi-shield-check"></i> Reglas del Grupo
+                                </h4>
+                                <ul class="rules-list">
+                                    <li>Temas permitidos: Cuentas, precios y métodos de entrega</li>
+                                    <li>Métodos de pago: QR, Tigo Money</li>
+                                    <li>Prohibido contenido para adultos</li>
+                                    <li>No se permiten links extraños ni spam</li>
+                                    <li>Se prohíbe la acción de revendedores</li>
+                                    <li>Mantén el respeto con otros miembros</li>
+                                </ul>
+
+                                <a href="https://chat.whatsapp.com/KHTxP6ScY3wBcpuW3ogUNb" class="whatsapp-btn" target="_blank">
+                                    <i class="bi bi-whatsapp"></i> Unirse al Grupo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pie de página -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2023 GHOST Comunidades Oficiales. Todos los derechos reservados.</p>
+                <p class="mb-0">Conectamos jugadores y streamers con seguridad y confianza</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Inicializar
+document.addEventListener('DOMContentLoaded', function () {
+    // Toggle sidebar
+    document.getElementById('sidebarCollapse').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('active');
+    });
+
+    // Cerrar sidebar al hacer clic en un enlace
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+        link.addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('active');
+        });
+    });
+
+    // Renderizar juegos
+    renderGames();
+
+    // Configurar búsqueda
+    document.getElementById('gameSearch').addEventListener('input', filterGames);
+    document.querySelector('.search-container .btn').addEventListener('click', filterGames);
+
+    // Cerrar sidebar al hacer clic fuera
+    document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const button = document.getElementById('sidebarCollapse');
+
+        if (sidebar.classList.contains('active') &&
+            !sidebar.contains(event.target) &&
+            event.target !== button) {
+            sidebar.classList.remove('active');
+        }
+    });
+});
+
+// Evento para botones de compra
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest('.btn-buy')) {
+        const button = e.target.closest('.btn-buy');
+        const gameName = button.getAttribute('data-game');
+        const item = button.getAttribute('data-item');
+        const phone = '59161541084';
+        const message = encodeURIComponent(`Hola, estoy interesado en comprar: ${item} para ${gameName}. ¿Está disponible?`);
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+
+        // Animación de confirmación
+        button.classList.add('btn-confirm');
+        setTimeout(() => {
+            button.classList.remove('btn-confirm');
+        }, 500);
+    }
+});
+    </script>
+
+
+</body>
+</html>
