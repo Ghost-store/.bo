@@ -92,12 +92,12 @@ const gamesData = [
         prices: [
             "100💎 + 10 bonus → 10 Bs",
             "310💎 + 31 bonus → 31 Bs",
-            "520💎 + 52 bonus → 52 Bs",
+            "520💎 + 52 bonus → 49 Bs",
             "1060💎 + 106 bonus → 89 Bs",
             "2180💎 + 218 bonus → 175 Bs",
-            "5600💎 + 560 bonus → 445 Bs",
+            "5600💎 + 560 bonus → 399 Bs",
             "Pases:",
-            "Pase semanal 🪪 → 24 Bs",
+            "Pase semanal 🪪 → 23 Bs",
             "Pase mensual 🪪 → 89 Bs"
         ]
     },
@@ -135,6 +135,28 @@ const gamesData = [
             "✨ 1600 + 120 Bs 165",
             "✨ 3200 + 300 Bs 339",
             "✨ 8000 + 800 Bs 835"
+        ]
+    },
+    {
+        id: 7,
+        name: "🏆🔥 CLASH ROYALE 🔥🏆",
+        icon: "🎮🔥 MINECRAFT 🔥🎮",
+        bannerImage: "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2017/02/guia-todos-trucos-consejos-minecraft.jpg?tf=3840x", // Aquí añadirás la URL de la imagen más adelante
+        description: "El clásico juego de construcción y aventuras",
+        prices: [
+            "🎯 TARJETA DE BOLIVIA 🇧🇴",
+            "💠 80 gemas 18 Bs",
+            "💠 500 gemas 69 Bs",
+            "💠 1200 gemas 134 Bs",
+            "💠 2500 gemas 245 Bs",
+            "🪪 Pass Royale 163 Bs",
+            "💠 80 gemas 19,45 Bs",
+            "💳 TARJETA VIRTUAL 🌐",
+            "💠 80 gemas 19,45 Bs",
+            "💠 500 gemas 83,20 Bs",
+            "💠 1200 gemas 164,85 Bs",
+            "💠 2500 gemas 336,12 Bs",
+            "🪪 Pass Royale 197,09 Bs",
         ]
     }
 ];
